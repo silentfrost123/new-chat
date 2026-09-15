@@ -47,87 +47,43 @@
     --input: 240 6% 90%;
     --ring: 263 70% 50%;
   }
-}
 
-@layer base {
   * {
-    @apply border-border;
-  }
-
-  html {
-    scroll-behavior: smooth;
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-
-  /* Focus visible for a11y */
-  :focus-visible {
-    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
-  }
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--border));
-    border-radius: 4px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground) / 0.4);
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
 @layer utilities {
   .pb-safe {
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-
-  .text-balance {
-    text-wrap: balance;
+    padding-bottom: 0px;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-vellum-300 via-pink-300 to-vellum-400 bg-clip-text text-transparent;
+    background-image: linear-gradient(to right, #c4b5fd, #f9a8d4, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
-  .glass {
-    @apply bg-card/60 backdrop-blur-xl border border-border/50;
-  }
-
-  /* Chat message prose */
   .message-content {
-    @apply leading-relaxed whitespace-pre-wrap break-words;
-  }
-  .message-content em,
-  .message-content i {
-    @apply text-muted-foreground italic;
+    line-height: 1.625;
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 
-  /* Hide scrollbar but keep scroll */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-}
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }
